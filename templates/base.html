@@ -3,6 +3,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+
     {% block meta %}
     <!-- Required meta tags -->
     <meta http-equiv = "X-UA-compatible" content="ie=edge">
@@ -13,17 +14,21 @@
     {% block extra_meta %}
     {% endblock %}
 
-    {% block core_css %}
-    <!-- Bootstrap CSS -->
+    {% block corecss %}
+    <!-- Bootstrap CSS + fonts + icons -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="//use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
-    {% block core_js %}
+    {% block corejs %}
     <!-- JavaScript moved to header for faster loading-->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- does not include a fontawesome kit -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -36,7 +41,7 @@
 </head>
 <body>
     <header class="container-fluid fixed-top">
-        <div class="row">
+        <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h2 class="large-font text-black my-0"><strong>Boutique</strong> Ado</h2>
@@ -95,20 +100,34 @@
                 </ul>
             </div>
         </div>
-    </header>
+        <div class="row bg-white">
+            <nav class="navbar navbar-expand-lg navbar-light w-100">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="#main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% include 'includes/mobile_top_header.html' %}
+                {% include 'includes/main_nav.html' %}
+            </nav>
+        </div>
+        <div id="delivery-banner" class="row text-center">
+            <div class="col bg-black text-white">
+                <h4 class="logo_font my-1">Free delivery on orders over ${{ free_shipping_threshold }}!</h4>
+            </div>
+        </div>
+      </header>
 
-    {% if messages %}
-    <div class="message-container"></div>
-    {% endif %}
+      {% if messages %}
+      <div class="message-container"></div>
+      {% endif %}
 
-    {% block page_header %}
-    {% endblock %}
+      {% block page_header %}
+      {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+      {% block content %}
+      {% endblock %}
 
-    {% block postloadjs %}
-    {% endblock %}
+      {% block postloadjs %}
+      {% endblock %}
 
-</body>
-</html>
+  </body>
+  </html>
