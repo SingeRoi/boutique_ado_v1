@@ -22,27 +22,22 @@
         <div class="product-container col-10 offset-1">
             <div class="row mt-1 mb-2"></div>
             <div class="row">
-                <!-- for loop to present products -->
                 {% for product in products %}
-                <!-- present products as bs cards to stack on mobile or side by side sm/med -->
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                     <div class="card h-100 border-0">
-                        <!-- image portion of page uses if loop to present image from {{ var }}or default noimage-->
                         {% if product.image %}
-                        <a href="">
+                        <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
                         {% else %}
-                        <a href="">
+                        <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                         </a>
                         {% endif %}
                         <div class="card-body pb-0">
-                            <!-- card body displays product name {{ var }}-->
                             <p class="mb-0">{{ product.name }}</p>
                         </div>
                         <div class="card-footer bg-white pt-0 border-0 text-left">
-                            <!-- surrounds and presents product price and an if loop for any rating  -->
                             <div class="row">
                                 <div class="col">
                                     <p class="lead mb-0 text-left font-weight-bold">${{ product.price }}</p>
