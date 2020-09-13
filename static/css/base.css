@@ -71,6 +71,12 @@ body {
     z-index: -1;
 }
 
+a.category-badge > span.badge:hover {
+    background: #2122529 !important;
+    color: #fff !important;
+    /* colours badges on hover - complements bootstrap dark class colors*/
+}
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens - widens bootstrap default container*/
